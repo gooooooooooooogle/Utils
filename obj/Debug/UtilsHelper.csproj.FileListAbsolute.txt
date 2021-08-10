@@ -1,0 +1,13 @@
+F:\C#-projects\UtilsHelper\bin\Debug\UtilsHelper.dll
+F:\C#-projects\UtilsHelper\bin\Debug\UtilsHelper.pdb
+F:\C#-projects\UtilsHelper\bin\Debug\BouncyCastle.Crypto.dll
+F:\C#-projects\UtilsHelper\bin\Debug\ICSharpCode.SharpZipLib.dll
+F:\C#-projects\UtilsHelper\bin\Debug\NPOI.dll
+F:\C#-projects\UtilsHelper\bin\Debug\NPOI.OOXML.dll
+F:\C#-projects\UtilsHelper\bin\Debug\NPOI.OpenXml4Net.dll
+F:\C#-projects\UtilsHelper\bin\Debug\NPOI.OpenXmlFormats.dll
+F:\C#-projects\UtilsHelper\bin\Debug\BouncyCastle.Crypto.xml
+F:\C#-projects\UtilsHelper\obj\Debug\UtilsHelper.csproj.CoreCompileInputs.cache
+F:\C#-projects\UtilsHelper\obj\Debug\UtilsHelper.csproj.CopyComplete
+F:\C#-projects\UtilsHelper\obj\Debug\UtilsHelper.dll
+F:\C#-projects\UtilsHelper\obj\Debug\UtilsHelper.pdb
