@@ -218,6 +218,7 @@ namespace Utils.helper
             }
             return strRe;
         }
+        
         private static void CopyToBak(string sFileName)
         {
             int fileCount = 0;
