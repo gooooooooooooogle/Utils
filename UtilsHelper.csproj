@@ -66,11 +66,13 @@
     <Compile Include="helper\ExcelHelper.cs" />
     <Compile Include="helper\HttpHelper.cs" />
     <Compile Include="helper\LogHelper.cs" />
+    <Compile Include="helper\XMLHelper.cs" />
     <Compile Include="helper\SQLHelper.cs" />
     <Compile Include="helper\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

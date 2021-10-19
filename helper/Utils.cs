@@ -310,7 +310,7 @@ namespace Utils.helper
         /// <summary>
         ///  AES 解密
         /// </summary>
-        /// <param name="str">明文（待解密）</param>
+        /// <param name="str">密文（待解密）</param>
         /// <param name="key">密钥</param>
         /// <returns></returns>
         public static string AesDecrypt(string str, string key = "1234567890123456")
