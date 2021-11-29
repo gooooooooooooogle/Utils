@@ -8,6 +8,91 @@ namespace Utils.helper
     public class CommHelper
     {
         /// <summary>
+        /// 串口发送方法
+        /// </summary>
+        /// <param name="sp"></param>
+        /// <param name="sendFrame"></param>
+        public static void Send(SerialPort sp, string sendFrame)
+        {
+            SerialPort serialPort = sp;
+            if (serialPort != null && !serialPort.IsOpen) serialPort.Open();
+
+            try
+            {
+                serialPort.DiscardInBuffer();
+                if ((sendFrame.Length % 2) == 0)
+                {
+                    int sendLen = sendFrame.Length / 2;
+                    byte[] buffer = new byte[sendLen];
+                    for (int i = 0; i < buffer.Length; i++)
+                    {
+                        buffer[i] = Convert.ToByte(sendFrame.Substring(i * 2, 2), 16);
+                    }
+                    serialPort.Write(buffer, 0, buffer.Length);
+                }
+                else
+                {
+                    //MessageBox.Show($"{sendFrame}发送报文长度异常！");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// 串口接收方法
+        /// </summary>
+        /// <param name="sp"></param>
+        /// <param name="switchType"></param>
+        /// <returns></returns>
+        public static string Receive(SerialPort sp, string switchType = "close")
+        {
+            Thread.Sleep(120);
+            SerialPort serialPort = sp;
+            try
+            {
+                int byteNum = serialPort.BytesToRead;
+                byte[] buffer = new byte[byteNum];
+                serialPort.Read(buffer, 0, byteNum);
+
+                string receiveFrame = string.Empty;
+                for (int i = 0; i < buffer.Length; i++)
+                {
+                    receiveFrame += Convert.ToString(buffer[i], 16).PadLeft(2, '0');
+                }
+
+                return receiveFrame.ToUpper();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (switchType == "close")
+                {
+                    serialPort.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 串口发送和接收方法
+        /// </summary>
+        /// <param name="sp"></param>
+        /// <param name="sendFrame"></param>
+        /// <returns></returns>
+        public static string SendAndReceive(SerialPort sp, string sendFrame)
+        {
+            Send(sp, sendFrame);
+            string receiveStr = Receive(sp);
+            return receiveStr;
+        }
+
+        /// <summary>
         /// 串口通讯 发送
         /// </summary>
         /// <param name="sp"></param>
@@ -28,10 +113,7 @@ namespace Utils.helper
                 Thread.Sleep(100);
                 serialPort.Write(buf.ToArray(), 0, buf.Count);
             }
-            catch (Exception e)
-            {
-                //MessageBox.Show(e.Message);
-            }
+            catch {}
             finally { }
         }
 
@@ -128,6 +210,12 @@ namespace Utils.helper
             return sendFrame.ToUpper();
         }
 
+        /// <summary>
+        /// 检查645报文合法性
+        /// </summary>
+        /// <param name="sendFrame"></param>
+        /// <param name="receiveFrame"></param>
+        /// <returns></returns>
         public  static Dictionary<string, string> Check645Legality(string sendFrame, string receiveFrame)
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
